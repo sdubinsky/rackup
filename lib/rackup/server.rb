@@ -225,7 +225,7 @@ module Rackup
     # * :profile_mode
     #     StackProf profile mode (cpu|wall|object)
     def initialize(options = nil)
-      @ignore_options = []
+      @ignore_options = [:environment]
 
       if options
         @use_default_options = false
