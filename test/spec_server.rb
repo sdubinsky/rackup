@@ -228,7 +228,7 @@ describe Rackup::Server do
     server = Rackup::Server.new
     server.options[:debug].must_equal true
     server.options[:server].must_equal 'thin'
-    server.options[:environment].must_equal 'production'
+    server.options[:environment].must_equal nil
     server.options[:warn].must_equal true
     server.options[:quiet].must_equal true
     server.options[:Host].must_equal 'localhost'

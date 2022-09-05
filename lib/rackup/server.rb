@@ -399,7 +399,7 @@ module Rackup
 
         @options = opt_parser.parse!(args)
         @options[:config] = ::File.expand_path(options[:config])
-        ENV["RACK_ENV"] = options[:environment]
+        ENV["RACK_ENV"] = @options[:environment]
         @options
       end
 
@@ -408,7 +408,9 @@ module Rackup
       end
 
       def build_app(app)
-        middleware[options[:environment]].reverse_each do |middleware|
+        environment = ENV['RACK_ENV']
+
+        middleware[environment].reverse_each do |middleware|
           middleware = middleware.call(self) if middleware.respond_to?(:call)
           next unless middleware
           klass, *args = middleware
